@@ -61,13 +61,24 @@ def show():
             x_col = c1.selectbox("X Axis", numeric_cols, key="sc_x")
             y_col = c2.selectbox("Y Axis", numeric_cols, index=min(1, len(numeric_cols)-1), key="sc_y")
             color_col = c3.selectbox("Color by", ["None"] + cat_cols, key="sc_c")
-            fig3 = px.scatter(df, x=x_col, y=y_col,
-                              color=color_col if color_col != "None" else None,
-                              color_discrete_sequence=PASTEL_COLORS,
-                              trendline="ols", opacity=0.7,
-                              title=f"{x_col} vs {y_col}")
-            fig3.update_layout(paper_bgcolor="#0e1117", plot_bgcolor="#1a1d2e", font_color="#e0e0e0")
-            st.plotly_chart(fig3, use_container_width=True)
+            fig3 = px.scatter(
+             df,
+             x=x_col,
+             y=y_col,
+             color=color_col if color_col != "None" else None,
+             color_discrete_sequence=PASTEL_COLORS,
+             opacity=0.7,
+            title=f"{x_col} vs {y_col}"
+         )  
+
+            fig3.update_layout(
+              paper_bgcolor="#0e1117",
+              plot_bgcolor="#1a1d2e",
+             font_color="#e0e0e0"
+)
+
+        st.plotly_chart(fig3, use_container_width=True)
+   
 
     # ── TAB 3: Categorical
     with tab3:
